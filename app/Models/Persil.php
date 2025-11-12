@@ -47,5 +47,3 @@ class Persil extends Model
         return $this->hasMany(SengketaPersil::class, 'persil_id', 'persil_id');
     }
 }
-
-

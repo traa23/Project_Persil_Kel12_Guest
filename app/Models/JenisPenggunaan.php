@@ -8,13 +8,9 @@ class JenisPenggunaan extends Model
 {
     protected $table = 'jenis_penggunaan';
     protected $primaryKey = 'jenis_id';
-    public $incrementing = true;
-    protected $keyType = 'int';
 
     protected $fillable = [
-        'nama_penggunaan',
-        'keterangan',
+        'nama_jenis',
+        'deskripsi',
     ];
 }
-
-
