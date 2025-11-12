@@ -9,20 +9,16 @@ class PetaPersil extends Model
 {
     protected $table = 'peta_persil';
     protected $primaryKey = 'peta_id';
-    public $incrementing = true;
-    protected $keyType = 'int';
 
     protected $fillable = [
         'persil_id',
-        'geojson',
-        'panjang_m',
-        'lebar_m',
-        'file_path',
+        'koordinat_json',
+        'file_peta',
+        'keterangan',
     ];
 
     protected $casts = [
-        'panjang_m' => 'decimal:2',
-        'lebar_m' => 'decimal:2',
+        'koordinat_json' => 'array',
     ];
 
     public function persil(): BelongsTo
@@ -30,5 +26,3 @@ class PetaPersil extends Model
         return $this->belongsTo(Persil::class, 'persil_id', 'persil_id');
     }
 }
-
-

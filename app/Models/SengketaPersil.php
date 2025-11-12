@@ -9,17 +9,18 @@ class SengketaPersil extends Model
 {
     protected $table = 'sengketa_persil';
     protected $primaryKey = 'sengketa_id';
-    public $incrementing = true;
-    protected $keyType = 'int';
 
     protected $fillable = [
         'persil_id',
-        'pihak_1',
-        'pihak_2',
-        'kronologi',
+        'tanggal_sengketa',
+        'pihak_terlibat',
+        'deskripsi',
         'status',
         'penyelesaian',
-        'file_path',
+    ];
+
+    protected $casts = [
+        'tanggal_sengketa' => 'date',
     ];
 
     public function persil(): BelongsTo
@@ -27,5 +28,3 @@ class SengketaPersil extends Model
         return $this->belongsTo(Persil::class, 'persil_id', 'persil_id');
     }
 }
-
-

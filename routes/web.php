@@ -1,10 +1,18 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GuestPersilController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+// Guest Routes - Default homepage and CRUD operations
+Route::get('/', [GuestPersilController::class, 'index'])->name('guest.persil.index');
+Route::prefix('guest/persil')->name('guest.persil.')->group(function () {
+    Route::get('/create', [GuestPersilController::class, 'create'])->name('create');
+    Route::post('/', [GuestPersilController::class, 'store'])->name('store');
+    Route::get('/{id}', [GuestPersilController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [GuestPersilController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [GuestPersilController::class, 'update'])->name('update');
+    Route::delete('/{id}', [GuestPersilController::class, 'destroy'])->name('destroy');
 });
 
 // Convenience redirect so /persil maps to admin resource

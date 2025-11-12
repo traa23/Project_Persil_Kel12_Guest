@@ -9,15 +9,18 @@ class DokumenPersil extends Model
 {
     protected $table = 'dokumen_persil';
     protected $primaryKey = 'dokumen_id';
-    public $incrementing = true;
-    protected $keyType = 'int';
 
     protected $fillable = [
         'persil_id',
         'jenis_dokumen',
-        'nomor',
-        'keterangan',
+        'nomor_dokumen',
+        'tanggal_dokumen',
         'file_path',
+        'keterangan',
+    ];
+
+    protected $casts = [
+        'tanggal_dokumen' => 'date',
     ];
 
     public function persil(): BelongsTo
@@ -25,5 +28,3 @@ class DokumenPersil extends Model
         return $this->belongsTo(Persil::class, 'persil_id', 'persil_id');
     }
 }
-
-
