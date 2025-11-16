@@ -8,36 +8,36 @@ class DokumenPersilController extends Controller
 {
     public function index()
     {
-        return view('admin.dokumen_persil.index');
+        return view('guest.dokumen_persil.index');
     }
 
     public function create()
     {
-        return view('admin.dokumen_persil.create');
+        return view('guest.dokumen_persil.create');
     }
 
     public function store(Request $request)
     {
-        return redirect()->route('admin.dokumen-persil.index');
+        return redirect()->route('guest.dokumen-persil.index');
     }
 
     public function show(string $id)
     {
-        return view('admin.dokumen_persil.show');
+        return view('guest.dokumen_persil.show');
     }
 
     public function edit(string $id)
     {
-        return view('admin.dokumen_persil.edit');
+        return view('guest.dokumen_persil.edit');
     }
 
     public function update(Request $request, string $id)
     {
-        return redirect()->route('admin.dokumen-persil.index');
+        return redirect()->route('guest.dokumen-persil.index');
     }
 
     public function destroy(string $id)
     {
-        return redirect()->route('admin.dokumen-persil.index');
+        return redirect()->route('guest.dokumen-persil.index');
     }
 }

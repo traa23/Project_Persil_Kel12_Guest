@@ -45,7 +45,7 @@
             <h2>Data Persil Terdaftar</h2>
         </header>
 
-        <div style="text-align: right; margin-bottom: 2em;">
+        <div style="text-align: center; margin-top: 1.5em; margin-bottom: 2em;">
             <a href="{{ route('guest.persil.create') }}" class="button special">Tambah Data Persil</a>
         </div>
 

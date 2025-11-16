@@ -4,23 +4,25 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestPersilController;
 use Illuminate\Support\Facades\Route;
 
-// Guest Routes - Default homepage and CRUD operations
-Route::get('/', [GuestPersilController::class, 'index'])->name('guest.persil.index');
-Route::prefix('guest/persil')->name('guest.persil.')->group(function () {
-    Route::get('/create', [GuestPersilController::class, 'create'])->name('create');
-    Route::post('/', [GuestPersilController::class, 'store'])->name('store');
-    Route::get('/{id}', [GuestPersilController::class, 'show'])->name('show');
-    Route::get('/{id}/edit', [GuestPersilController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [GuestPersilController::class, 'update'])->name('update');
-    Route::delete('/{id}', [GuestPersilController::class, 'destroy'])->name('destroy');
+// Default Laravel welcome page
+Route::get('/', function () {
+    return view('welcome');
 });
 
-// Convenience redirect so /persil maps to admin resource
-Route::redirect('/persil', '/admin/persil');
+// Guest resource routes
+Route::prefix('guest')->name('guest.')->group(function () {
+    // Persil routes
+    Route::get('/', [GuestPersilController::class, 'index'])->name('persil.index');
+    Route::prefix('persil')->name('persil.')->group(function () {
+        Route::get('/create', [GuestPersilController::class, 'create'])->name('create');
+        Route::post('/', [GuestPersilController::class, 'store'])->name('store');
+        Route::get('/{id}', [GuestPersilController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [GuestPersilController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [GuestPersilController::class, 'update'])->name('update');
+        Route::delete('/{id}', [GuestPersilController::class, 'destroy'])->name('destroy');
+    });
 
-// Admin resource routes
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('persil', \App\Http\Controllers\PersilController::class);
+    // Other guest resources
     Route::resource('dokumen-persil', \App\Http\Controllers\DokumenPersilController::class);
     Route::resource('peta-persil', \App\Http\Controllers\PetaPersilController::class);
     Route::resource('sengketa-persil', \App\Http\Controllers\SengketaPersilController::class);

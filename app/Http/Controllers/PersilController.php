@@ -10,12 +10,12 @@ class PersilController extends Controller
     public function index()
     {
         $persils = Persil::with('pemilik')->latest()->paginate(10);
-        return view('admin.persil.index', compact('persils'));
+        return view('guest.persil.index', compact('persils'));
     }
 
     public function create()
     {
-        return view('admin.persil.create');
+        return view('guest.persil.create');
     }
 
     public function store(Request $request)
@@ -31,19 +31,19 @@ class PersilController extends Controller
 
         Persil::create($request->all());
 
-        return redirect()->route('admin.persil.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('guest.persil.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function show(string $id)
     {
         $persil = Persil::with(['pemilik', 'dokumen', 'peta', 'sengketa'])->findOrFail($id);
-        return view('admin.persil.show', compact('persil'));
+        return view('guest.persil.show', compact('persil'));
     }
 
     public function edit(string $id)
     {
         $persil = Persil::findOrFail($id);
-        return view('admin.persil.edit', compact('persil'));
+        return view('guest.persil.edit', compact('persil'));
     }
 
     public function update(Request $request, string $id)
@@ -61,7 +61,7 @@ class PersilController extends Controller
 
         $persil->update($request->all());
 
-        return redirect()->route('admin.persil.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('guest.persil.index')->with('success', 'Data berhasil diupdate');
     }
 
     public function destroy(string $id)
@@ -69,6 +69,6 @@ class PersilController extends Controller
         $persil = Persil::findOrFail($id);
         $persil->delete();
 
-        return redirect()->route('admin.persil.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('guest.persil.index')->with('success', 'Data berhasil dihapus');
     }
 }
